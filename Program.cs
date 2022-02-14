@@ -427,7 +427,72 @@ namespace DIS_Assignment2_Mukul
 
         }
 
-        //Answer 9
+        //Answer 9 is not done
+        public static int SwimInWater(int[,] grid)
+        {
+            try
+            {
+                //write your code here.
+                return 0;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        
+        
+        //Answer 10
+        public static int MinDistance(string word1, string word2)
+        {
+            try
+            {
+                int[,] final = new int[word1.Length + 1, word2.Length + 1];//initalizing the final integer array
+                int length1 = word1.Length;
+                int length2 = word2.Length;
+                for (int i = 0; i <= length1; i++)//iterating the i till the word1 length staring from 0
+                {
+                    final[i, 0] = i;//calculating the final array as i
+                }
+                for (int j = 1; j <= length2; j++)//iterating the j till word2 length starting from 1
+                {
+                    final[0, j] = j;//calculating the final array as j
+                }
+
+                for (int x = 1; x <= length1; x++) //iterating the x till the word 1 length
+                {
+                    for (int y = 1; y <= length2; y++)//iterating the y till word 2 length
+                    {
+                        if (word1[x - 1] == word2[y - 1])//if word1 [x-1] is equivalent to word2 [y-1] 
+                        {
+                            final[x, y] = final[x - 1, y - 1];//calculating the final array as x-1 and y-1
+                        }
+                        else
+                        {
+                            final[x, y] = Math.Min(final[x - 1, y - 1], Math.Min(final[x - 1, y], final[x, y - 1])) + 1;//else usng math min function calculating the final multidimensional array
+                        }
+                    }
+                }
+                if (word2 == string.Empty)//if word 2 string is empty
+                {
+                    return length1;//return word1 length
+                }
+                else if (word1 == string.Empty)//if word 1 string is empty
+                {
+                    return length2 ;//return the word 2 length
+                }
+
+                return final[length1, length2];//returning the length1 and length2
+            }
+
+
+            catch (Exception)
+            {
+
+
+                throw;
+            }
 
     }
 }
